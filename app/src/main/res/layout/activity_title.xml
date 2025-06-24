@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TitleActivity">
+
+    <include layout="@layout/toolbar_layout"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="611dp"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!-- Заголовок тайтла -->
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Название тайтла"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:paddingBottom="16dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv_poster"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_margin="16dp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="right" >
+                    <!-- Секция информации -->
+                    <TextView
+                        android:id="@+id/section_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Информация"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:paddingBottom="8dp"/>
+                    <TextView
+                        android:id="@+id/tv_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Тип: "
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:id="@+id/tv_episodes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Эпизоды: "
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:id="@+id/tv_etikets"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Этикеты: "
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:id="@+id/tv_genres"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Жанры: "
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:id="@+id/tv_themes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Темы: "
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:id="@+id/tv_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Статус: "
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:id="@+id/tv_rating"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Рейтинг: "
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:id="@+id/tv_countries"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Страны: "
+                        android:textSize="16sp"/>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- Секция описания -->
+            <TextView
+                android:id="@+id/section_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Описание"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Само описание"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/bottom_nav_layout"/>
+
+</LinearLayout>
