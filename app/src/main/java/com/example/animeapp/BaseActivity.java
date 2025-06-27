@@ -2,10 +2,11 @@ package com.example.animeapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import android.widget.ImageButton;
 
 public abstract class BaseActivity extends AppCompatActivity {
     @Override
@@ -17,13 +18,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        android.widget.Toolbar bottomNav = findViewById(R.id.bottom_navigation);
         if (bottomNav != null) {
-            // Обработка нажатий на кнопки нижнего Toolbar
             int childCount = bottomNav.getChildCount();
             for (int i = 0; i < childCount; i++) {
                 android.view.View child = bottomNav.getChildAt(i);
-                if (child instanceof android.widget.ImageButton) {
+                if (child instanceof ImageButton) {
                     int index = i;
                     child.setOnClickListener(v -> {
                         switch (index) {

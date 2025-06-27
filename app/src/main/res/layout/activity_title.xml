@@ -8,11 +8,29 @@
     android:orientation="vertical"
     tools:context=".TitleActivity">
 
-    <include layout="@layout/toolbar_layout"/>
+    <!-- Верхний Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@mipmap/icon" />
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/menu"
+            android:background="?attr/colorPrimary"/>
+    </androidx.appcompat.widget.Toolbar>
 
+    <!-- Нижняя навигация -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="611dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:padding="16dp">
 
         <LinearLayout
@@ -20,86 +38,119 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <!-- Заголовок тайтла -->
-            <TextView
-                android:id="@+id/tv_title"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Название тайтла"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:paddingBottom="16dp"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingBottom="16dp"
+                    android:text="Название тайтла"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+                <ImageButton
+                    android:id="@+id/btn_add_forum"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/forum"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Добавить в избранное"/>
+
+                <ImageButton
+                    android:id="@+id/btn_add_favorite"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/favorite"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Добавить в избранное"/>
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <ImageView
                     android:id="@+id/iv_poster"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_margin="16dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_margin="16dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_gravity="right" >
+                    android:layout_gravity="right"
+                    android:orientation="vertical">
                     <!-- Секция информации -->
                     <TextView
                         android:id="@+id/section_info"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingBottom="8dp"
                         android:text="Информация"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:paddingBottom="8dp"/>
+                        android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/tv_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Тип: "
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
+
                     <TextView
                         android:id="@+id/tv_episodes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Эпизоды: "
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
+
                     <TextView
                         android:id="@+id/tv_etikets"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Этикеты: "
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
+
                     <TextView
                         android:id="@+id/tv_genres"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Жанры: "
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
+
                     <TextView
                         android:id="@+id/tv_themes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Темы: "
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
+
                     <TextView
                         android:id="@+id/tv_status"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Статус: "
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
+
                     <TextView
                         android:id="@+id/tv_rating"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Рейтинг: "
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
+
                     <TextView
                         android:id="@+id/tv_countries"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Страны: "
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
             <!-- Секция описания -->
@@ -107,19 +158,54 @@
                 android:id="@+id/section_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
                 android:text="Описание"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:paddingBottom="8dp"/>
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/tv_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Само описание"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 
-    <include layout="@layout/bottom_nav_layout"/>
+    <Toolbar
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="?attr/colorPrimary">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/home"
+            android:background="?attr/colorPrimary"
+            android:layout_marginHorizontal="25dp"
+            android:layout_gravity="center"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/favorite"
+            android:background="?attr/colorPrimary"
+            android:layout_marginHorizontal="25dp"
+            android:layout_gravity="center"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/forum"
+            android:background="?attr/colorPrimary"
+            android:layout_marginHorizontal="25dp"
+            android:layout_gravity="center"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/profile"
+            android:background="?attr/colorPrimary"
+            android:layout_marginHorizontal="25dp"
+            android:layout_gravity="center"/>
+    </Toolbar>
 
 </LinearLayout>

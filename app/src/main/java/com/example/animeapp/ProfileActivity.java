@@ -49,6 +49,18 @@ public class ProfileActivity extends AppCompatActivity {
         rvCreatedForums.setAdapter(adapter);
 
         loadProfileData();
+
+        android.widget.Toolbar bottomNav = findViewById(R.id.bottom_navigation);
+        if (bottomNav != null) {
+            android.widget.ImageButton btnHome = bottomNav.findViewById(R.id.home_button);
+            android.widget.ImageButton btnFavorite = bottomNav.findViewById(R.id.favorite_button);
+            android.widget.ImageButton btnForum = bottomNav.findViewById(R.id.forum_button);
+            android.widget.ImageButton btnProfile = bottomNav.findViewById(R.id.setting_button);
+            if (btnHome != null) btnHome.setOnClickListener(v -> startActivity(new android.content.Intent(this, MainActivity.class)));
+            if (btnFavorite != null) btnFavorite.setOnClickListener(v -> startActivity(new android.content.Intent(this, FavoritesActivity.class)));
+            if (btnForum != null) btnForum.setOnClickListener(v -> startActivity(new android.content.Intent(this, ForumsActivity.class)));
+            if (btnProfile != null) btnProfile.setOnClickListener(v -> startActivity(new android.content.Intent(this, EditProfileActivity.class)));
+        }
     }
 
     private void loadProfileData() {

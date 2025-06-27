@@ -1,14 +1,12 @@
 package com.example.animeapp;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import android.content.Intent;
+
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +33,18 @@ public class TitleActivity extends BaseActivity {
         tvDescription = findViewById(R.id.tv_description);
         tvType = findViewById(R.id.tv_type);
         tvEpisodes = findViewById(R.id.tv_episodes);
+
+        ImageButton btnAddForum = findViewById(R.id.btn_add_forum);
+        ImageButton btnAddFavorite = findViewById(R.id.btn_add_favorite);
+
+        btnAddForum.setOnClickListener(v -> {
+            startActivity(new android.content.Intent(this, CreateForumActivity.class));
+        });
+
+        btnAddFavorite.setOnClickListener(v -> {
+            // TODO: добавить логику добавления в избранное
+            Toast.makeText(this, "Добавлено в избранное", Toast.LENGTH_SHORT).show();
+        });
 
         databaseReference = FirebaseDatabase.getInstance().getReference("anime");
 
