@@ -49,8 +49,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingBottom="16dp"
-                    android:text="Название тайтла"
-                    android:textSize="24sp"
+                android:text="Название тайтла"
+                android:textSize="24sp"
                     android:textStyle="bold" />
                 <ImageButton
                     android:id="@+id/btn_add_forum"

@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "728612849848",
-    "project_id": "animeapp-f8807",
-    "storage_bucket": "animeapp-f8807.firebasestorage.app"
+    "project_number": "415491370412",
+    "firebase_url": "https://anime-b69f4-default-rtdb.firebaseio.com",
+    "project_id": "anime-b69f4",
+    "storage_bucket": "anime-b69f4.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:728612849848:android:8b8545b8d3d267f35f8c4d",
+        "mobilesdk_app_id": "1:415491370412:android:a75de0282a47dbfa105e09",
         "android_client_info": {
           "package_name": "com.example.animeapp"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCF8QIs263OlBOTEqrYvva9jAfJxuUiHgw"
+          "current_key": "AIzaSyAboFRpoDmq2GK5y1X52N69J6l3aP-biig"
         }
       ],
       "services": {
