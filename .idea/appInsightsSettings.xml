@@ -10,9 +10,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.example.animeapp" />
-                  <option name="mobileSdkAppId" value="1:728612849848:android:8b8545b8d3d267f35f8c4d" />
-                  <option name="projectId" value="animeapp-f8807" />
-                  <option name="projectNumber" value="728612849848" />
+                  <option name="mobileSdkAppId" value="1:415491370412:android:a75de0282a47dbfa105e09" />
+                  <option name="projectId" value="anime-b69f4" />
+                  <option name="projectNumber" value="415491370412" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

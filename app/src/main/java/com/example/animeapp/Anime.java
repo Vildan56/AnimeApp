@@ -1,30 +1,38 @@
 package com.example.animeapp;
 
+import java.util.List;
+
 public class Anime {
-    private String animeId;
+    private String id;
     private String title;
-    private String posterUrl;
+    private String title_eng;
     private String description;
-    private String type;
-    private String episodes;
+    private int episodes;
+    private List<String> genres;
+    private String poster_url;
+    private double rating;
+    private String status;
 
     public Anime() {}
 
-    public Anime(String animeId, String title, String posterUrl, String description, String type, String episodes) {
-        this.animeId = animeId;
+    public Anime(String id, String title, String title_eng, String description, int episodes, List<String> genres, String poster_url, double rating, String status) {
+        this.id = id;
         this.title = title;
-        this.posterUrl = posterUrl;
+        this.title_eng = title_eng;
         this.description = description;
-        this.type = type;
         this.episodes = episodes;
+        this.genres = genres;
+        this.poster_url = poster_url;
+        this.rating = rating;
+        this.status = status;
     }
 
-    public String getAnimeId() {
-        return animeId;
+    public String getId() {
+        return id;
     }
 
-    public void setAnimeId(String animeId) {
-        this.animeId = animeId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -35,12 +43,12 @@ public class Anime {
         this.title = title;
     }
 
-    public String getPosterUrl() {
-        return posterUrl;
+    public String getTitle_eng() {
+        return title_eng;
     }
 
-    public void setPosterUrl(String posterUrl) {
-        this.posterUrl = posterUrl;
+    public void setTitle_eng(String title_eng) {
+        this.title_eng = title_eng;
     }
 
     public String getDescription() {
@@ -51,19 +59,43 @@ public class Anime {
         this.description = description;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getEpisodes() {
+    public int getEpisodes() {
         return episodes;
     }
 
-    public void setEpisodes(String episodes) {
+    public void setEpisodes(int episodes) {
         this.episodes = episodes;
+    }
+
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
+    }
+
+    public String getPoster_url() {
+        return poster_url;
+    }
+
+    public void setPoster_url(String poster_url) {
+        this.poster_url = poster_url;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

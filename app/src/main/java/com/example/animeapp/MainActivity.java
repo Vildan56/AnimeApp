@@ -17,6 +17,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
+
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -86,7 +88,12 @@ public class MainActivity extends AppCompatActivity {
                 allAnimeList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Anime anime = snapshot.getValue(Anime.class);
-                    allAnimeList.add(anime);
+                    if (anime != null && anime.getTitle() != null && anime.getPoster_url() != null && !anime.getTitle().isEmpty() && !anime.getPoster_url().isEmpty()) {
+                        allAnimeList.add(anime);
+                        Log.d("AnimeAdapter", "title: " + anime.getTitle() + ", poster: " + anime.getPoster_url());
+                    } else {
+                        Log.w("AnimeAdapter", "Пропущен элемент: " + snapshot.getKey() + ", title: " + (anime != null ? anime.getTitle() : "null") + ", poster: " + (anime != null ? anime.getPoster_url() : "null"));
+                    }
                 }
                 displayedAnimeList.clear();
                 displayedAnimeList.addAll(allAnimeList);

@@ -14,12 +14,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class TitleActivity extends BaseActivity {
 
     private ImageView ivPoster;
-    private TextView tvTitle, tvDescription, tvType, tvEpisodes;
+    private TextView tvTitle, tvDescription, tvType, tvEpisodes, tvGenres, tvRating, tvStatus;
     private DatabaseReference databaseReference;
+    private boolean isFavorite = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,9 @@ public class TitleActivity extends BaseActivity {
         tvDescription = findViewById(R.id.tv_description);
         tvType = findViewById(R.id.tv_type);
         tvEpisodes = findViewById(R.id.tv_episodes);
+        tvGenres = findViewById(R.id.tv_genres);
+        tvRating = findViewById(R.id.tv_rating);
+        tvStatus = findViewById(R.id.tv_status);
 
         ImageButton btnAddForum = findViewById(R.id.btn_add_forum);
         ImageButton btnAddFavorite = findViewById(R.id.btn_add_favorite);
@@ -41,14 +47,51 @@ public class TitleActivity extends BaseActivity {
             startActivity(new android.content.Intent(this, CreateForumActivity.class));
         });
 
-        btnAddFavorite.setOnClickListener(v -> {
-            // TODO: добавить логику добавления в избранное
-            Toast.makeText(this, "Добавлено в избранное", Toast.LENGTH_SHORT).show();
-        });
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String animeId = getIntent().getStringExtra("animeId");
+
+        if (user != null && animeId != null) {
+            DatabaseReference favRef = FirebaseDatabase.getInstance().getReference()
+                .child("users").child(user.getUid()).child("favorites").child(animeId);
+
+            // Проверяем, есть ли в избранном
+            favRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    isFavorite = snapshot.exists();
+                    btnAddFavorite.setImageResource(isFavorite ? R.drawable.favorite_filled : R.drawable.favorite);
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {}
+            });
+
+            btnAddFavorite.setOnClickListener(v -> {
+                if (isFavorite) {
+                    favRef.removeValue().addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            isFavorite = false;
+                            btnAddFavorite.setImageResource(R.drawable.favorite);
+                            Toast.makeText(this, "Удалено из избранного", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    favRef.setValue(true).addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            isFavorite = true;
+                            btnAddFavorite.setImageResource(R.drawable.favorite_filled);
+                            Toast.makeText(this, "Добавлено в избранное", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
+        } else {
+            btnAddFavorite.setOnClickListener(v ->
+                Toast.makeText(this, "Войдите в аккаунт, чтобы добавить в избранное", Toast.LENGTH_SHORT).show()
+            );
+        }
 
         databaseReference = FirebaseDatabase.getInstance().getReference("anime");
 
-        String animeId = getIntent().getStringExtra("animeId");
         if (animeId != null) {
             loadAnimeData(animeId);
         }
@@ -63,10 +106,13 @@ public class TitleActivity extends BaseActivity {
                     if (anime != null) {
                         tvTitle.setText(anime.getTitle());
                         tvDescription.setText(anime.getDescription());
-                        tvType.setText("Тип: " + anime.getType());
+                        tvType.setText("Тип: " + (anime.getTitle_eng() != null ? anime.getTitle_eng() : "-"));
                         tvEpisodes.setText("Эпизоды: " + anime.getEpisodes());
-                        if (anime.getPosterUrl() != null && !anime.getPosterUrl().isEmpty()) {
-                            Picasso.get().load(anime.getPosterUrl()).into(ivPoster);
+                        tvGenres.setText("Жанры: " + (anime.getGenres() != null ? android.text.TextUtils.join(", ", anime.getGenres()) : "-"));
+                        tvRating.setText("Рейтинг: " + anime.getRating());
+                        tvStatus.setText("Статус: " + (anime.getStatus() != null ? anime.getStatus() : "-"));
+                        if (anime.getPoster_url() != null && !anime.getPoster_url().isEmpty()) {
+                            Picasso.get().load(anime.getPoster_url()).into(ivPoster);
                         }
                     }
                 }

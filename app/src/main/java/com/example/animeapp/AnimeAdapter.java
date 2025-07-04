@@ -32,7 +32,13 @@ public class AnimeAdapter extends RecyclerView.Adapter<AnimeAdapter.AnimeViewHol
     public void onBindViewHolder(@NonNull AnimeViewHolder holder, int position) {
         Anime anime = animeList.get(position);
         holder.tvTitle.setText(anime.getTitle());
-        Picasso.get().load(anime.getPosterUrl()).into(holder.imgPoster);
+        Picasso.get().load(anime.getPoster_url()).into(holder.imgPoster);
+        holder.itemView.setOnClickListener(v -> {
+            android.content.Context context = v.getContext();
+            android.content.Intent intent = new android.content.Intent(context, TitleActivity.class);
+            intent.putExtra("animeId", anime.getId());
+            context.startActivity(intent);
+        });
     }
 
     @Override
